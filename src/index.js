@@ -4,11 +4,17 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { DrizzleProvider } from 'drizzle-react'
+// From UPort
+import { UserIsAuthenticated } from './util/wrappers.js'
 
 // Layouts
 import App from './App'
 import HomeContainer from './layouts/home/HomeContainer'
 import LoadingContainer from './layouts/loading/LoadingContainer'
+
+// Layouts from UPort 
+import Dashboard from './layouts/dashboard/Dashboard'
+import Profile from './user/layouts/profile/Profile'
 
 // Contracts
 import ComplexStorage from './../build/contracts/ComplexStorage.json'
@@ -47,6 +53,8 @@ ReactDOM.render((
           <Router history={history}>
             <Route path="/" component={App}>
               <IndexRoute component={HomeContainer} />
+              <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
+              <Route path="profile" component={UserIsAuthenticated(Profile)} />
             </Route>
           </Router>
         </LoadingContainer>
