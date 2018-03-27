@@ -1,3 +1,5 @@
+const HDWalletProvider = require("truffle-hdwallet-provider");
+
 module.exports = {
   migrations_directory: "./migrations",
   networks: {
@@ -10,6 +12,11 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*" 
-    }
+    },
+    "rinkeby-infura": {
+      provider: () => new HDWalletProvider("", "https://rinkeby.infura.io/aNR1TfCbU2Zk7zrmXfLJ"),
+      network_id: 4,
+      gas: 4700000
+    },
   }
 };
