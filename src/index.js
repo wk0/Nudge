@@ -20,6 +20,11 @@ import Profile from './user/layouts/profile/Profile'
 import ComplexStorage from './../build/contracts/ComplexStorage.json'
 import SimpleStorage from './../build/contracts/SimpleStorage.json'
 import TutorialToken from './../build/contracts/TutorialToken.json'
+//import BaseNudge from './../build/contracts/BaseNudge.json'
+//import NudgeFactory from './../build/contract/NudgeFactory.json'
+//import StandardNudge from './../build/contract/StandardNudge.json'
+//import Token from './../build/contract/Token.json'
+import test from './../build/contracts/test.json'
 
 // Redux Store
 import store from './store'
@@ -61,10 +66,18 @@ const options = {
     ComplexStorage,
     SimpleStorage,
     TutorialToken
+    //BaseNudge,
+    //NudgeFactory,
+    //StandardNudge,
+    //Token
   ],
   events: {
-    SimpleStorage: ['StorageSet']
-  }
+    //SimpleStorage: ['StorageSet'],
+    //StandardNudge: ['DeadlineProvided', 'ProofHasBeenProvided', 'NoProofProvided', 'VerdictDecided'],
+    //BaseNudge: ['SelfDestruct'],
+    //NudgeFactory: ['FactoryLive', 'NewStandardNudge']
+  },
+  polls: {}
 }
 
 ReactDOM.render((

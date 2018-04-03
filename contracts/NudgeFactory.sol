@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
 import './StandardNudge.sol';
-
+import './Token.sol';
 // Needed to handle accidental sending of tokens, 
 // will be needed in the future to support tokens
 

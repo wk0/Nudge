@@ -14,6 +14,8 @@ contract BaseNudge {
   enum State {AWAITING_COMMITMENT, AWAITING_COMPLETION, AWAITING_JUDGING, SUCCESS, FAILURE}
   State public currentState;
 
+  event SelfDestruct(address _contract, State _state);
+
   address public contractAddress; 
   address public user;
   address public nudgeStaff;
@@ -61,6 +63,7 @@ contract BaseNudge {
   // Ensure payout has already occured
   function destroy() onlyNudgeStaff public {
     require(currentState == State.SUCCESS || currentState == State.FAILURE);
+    SelfDestruct(contractAddress, currentState);
     selfdestruct(nudgeStaff);
   }
 
