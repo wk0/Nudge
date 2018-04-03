@@ -6,43 +6,44 @@ import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
 import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
 
-// Styles
+// Styles (Pure CSS from TruffleBox)
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Button from 'material-ui/Button';
+
+// To make buttons links 
+const rootLink = props => <Link to="/" {...props} />
+const profileLink = props => <Link to="/profile" {...props} />;
+const dashboardLink = props => <Link to="/dashboard" {...props} />;
+
 class App extends Component {
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
-      <span>
-        <li className="pure-menu-item">
-          <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link to="/profile" className="pure-menu-link">Profile</Link>
-        </li>
-        <li className="pure-menu-item">
-          <LogoutButtonContainer />
-        </li>
-      </span>
+      <div>
+        <Button component={dashboardLink} color="secondary" style={{fontFamily:'Oswald'}}>Dashboard</Button>
+        <Button component={profileLink} color="secondary" style={{fontFamily:'Oswald'}}>Profile</Button>
+        <LogoutButtonContainer />
+      </div>
     )
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
-      <span>
-        <LoginButtonContainer />
-      </span>
+      <LoginButtonContainer />
     )
 
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
-          <ul className="pure-menu-list navbar-right">
+        <AppBar color="primary" position="static">
+          <Toolbar style={{display: 'flex', justifyContent: 'space-between' }}>
+            <Button component={rootLink} color="secondary" style={{fontFamily:'Oswald', fontWeight:'bold'}}>Nudge</Button>
             <OnlyGuestLinks />
             <OnlyAuthLinks />
-          </ul>
-        </nav>
+          </Toolbar>
+        </AppBar>
 
         {this.props.children}
       </div>

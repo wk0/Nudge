@@ -20,8 +20,8 @@ export function loginUser() {
       .then((credentials) => {
         dispatch(userLoggedIn(credentials))
 
-        console.log(credentials)
-        localStorage.setItem('auth_token', JSON.stringify(credentials));
+        //console.log(credentials)
+        //localStorage.setItem('auth_token', JSON.stringify(credentials));
         
         // Used a manual redirect here as opposed to a wrapper.
         // This way, once logged in a user can still access the home page.

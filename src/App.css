@@ -52,7 +52,6 @@ ul li:not(:last-child) {
 
 .navbar {
   position: fixed;
-  padding: 5px;
   background: #0c1a2b;
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
 }
@@ -107,4 +106,16 @@ ul li:not(:last-child) {
   color: darkgreen;
   background: darkseagreen;
   border: 1px solid darkgreen;
+}
+
+
+/* Will's changes */
+.brand-main {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: bold;
+  text-transform: none;
+}
+
+.oswald {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
 }
