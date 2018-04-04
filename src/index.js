@@ -11,11 +11,14 @@ import { UserIsAuthenticated } from './util/wrappers.js'
 import App from './App'
 import DrizzleHomeContainer from './layouts/drizzlehome/DrizzleHomeContainer'
 import LoadingContainer from './layouts/loading/LoadingContainer'
-import Landing from './layouts/landing/Landing'
 
 // Layouts from UPort 
 import Dashboard from './layouts/dashboard/Dashboard'
 import Profile from './user/layouts/profile/Profile'
+
+// Custom Layouts 
+import Landing from './layouts/landing/Landing'
+import CommitmentContainer from './layouts/commitment/CommitmentContainer.js';
 
 // Contracts
 import ComplexStorage from './../build/contracts/ComplexStorage.json'
@@ -78,6 +81,7 @@ ReactDOM.render((
               <Route path="/" component={App}>
                 <IndexRoute component={Landing} />
                 <Route path="drizzle" component={DrizzleHomeContainer}/>
+                <Route path="commitment" component={CommitmentContainer}/>
                 <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
                 <Route path="profile" component={UserIsAuthenticated(Profile)} />
               </Route>

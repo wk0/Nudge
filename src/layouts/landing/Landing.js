@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import logo from '../../logo.png'
 
+import LandingCommitmentForm from '../../components/LandingCommitmentForm';
+
 class Landing extends Component {
   render() {
     return (
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1 header">
-            <img src={logo} alt="drizzle-logo" />
-            <h1>Drizzle Examples</h1>
-            <p>Examples of how to get started with Drizzle in various situations.</p>
-
+            <h1>Nudge</h1>
+            <p>A Decentralized Productivity App</p>
             <br/><br/>
+            <LandingCommitmentForm/>
           </div>
         </div>
       </main>
