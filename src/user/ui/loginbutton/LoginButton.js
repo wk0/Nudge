@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'material-ui/Button';
 
 // Images
-import uPortLogo from '../../../img/uport-logo.svg'
+//import uPortLogo from '../../../img/uport-logo.svg'
 
 const LoginButton = ({ onLoginUserClick }) => {
   return(

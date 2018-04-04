@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Commitment extends Component {
   constructor(props){
@@ -6,20 +7,24 @@ class Commitment extends Component {
   }
 
   render() {
-    console.log("In commitment")
-    console.log(this.props)
+    const commitment = this.props.state.commitment[0];
+    console.log(commitment)
     return (
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1 header">
             <h1>Commitment</h1>
             <br/>
-          </div>
+            <h3>{commitment}</h3>
 
+          </div>
         </div>
       </main>
-    )
+    );
   }
 }
+const mapStateToProps = state => {
+  return {state}
+}
 
-export default Commitment
+export default connect(mapStateToProps, {})(Commitment);

@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router'
+//import { Link, Redirect } from 'react-router'
 import Button from 'material-ui/Button';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { toCommitForm } from '../actions/index';
+
+import { withRouter } from 'react-router' 
 
 const styles = {
   formDiv : {
@@ -23,8 +28,6 @@ const styles = {
   }
 }
 
-
-
 class LandingCommitmentForm extends Component {
   constructor(props){
     super(props);
@@ -43,10 +46,9 @@ class LandingCommitmentForm extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    //fetch weather data here
-    //this.props.fetchWeather(this.state.term);
-    //this.setState({term: ''});
-    console.log("formSubmit", this.state.term);
+    //push to the real form
+    this.props.toCommitForm(this.state.term);
+    this.props.router.push('/commitment')
   }
   
   render() {
@@ -62,4 +64,8 @@ class LandingCommitmentForm extends Component {
   }
 }
 
-export default LandingCommitmentForm;
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ toCommitForm }, dispatch);
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(LandingCommitmentForm));
