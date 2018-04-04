@@ -11,7 +11,7 @@ class Landing extends Component {
           <div className="pure-u-1-1 header">
             <h1>Nudge</h1>
             <p>A Decentralized Productivity App</p>
-            <br/><br/>
+            <br/>
             <LandingCommitmentForm/>
           </div>
         </div>
