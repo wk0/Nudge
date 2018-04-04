@@ -20,11 +20,13 @@ import Button from 'material-ui/Button';
 const rootLink = props => <Link to="/" {...props} />
 const profileLink = props => <Link to="/profile" {...props} />;
 const dashboardLink = props => <Link to="/dashboard" {...props} />;
+const drizzleLink = props => <Link to="/drizzle" {...props} />;
 
 class App extends Component {
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
       <div>
+        <Button component={drizzleLink} color="secondary" style={{fontFamily:'Oswald'}}>Drizzle</Button>
         <Button component={dashboardLink} color="secondary" style={{fontFamily:'Oswald'}}>Dashboard</Button>
         <Button component={profileLink} color="secondary" style={{fontFamily:'Oswald'}}>Profile</Button>
         <LogoutButtonContainer />
@@ -32,7 +34,10 @@ class App extends Component {
     )
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
-      <LoginButtonContainer />
+      <div>
+        <Button component={drizzleLink} color="secondary" style={{fontFamily:'Oswald'}}>Drizzle</Button>
+        <LoginButtonContainer />
+      </div>
     )
 
     return (
