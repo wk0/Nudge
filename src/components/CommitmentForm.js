@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 //import { Link, Redirect } from 'react-router'
-import Button from "material-ui/Button";
+//import Button from "material-ui/Button";
 import { Field, reduxForm } from "redux-form";
 
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+//import { bindActionCreators } from "redux";
 
-import { withRouter } from "react-router";
-import getWeb3 from "./../util/web3/getWeb3"
+//import { withRouter } from "react-router";
+//import getWeb3 from "./../util/web3/getWeb3"
 
 class CommitmentForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      commitment: this.props.commitment ? this.props.commitment : "run a mile"
+      commitment: this.props.commitment ? this.props.commitment : "run a mile",
+      userAddr: ''
     };
   }
 
@@ -51,12 +52,10 @@ const validate = values => {
 
 function mapStateToProps(state) {
   // This initialized the form values
-  console.log(state)
-  //console.log(state.web3.web3Instance.eth.defaultAccount)
-  //console.log(state.web3.eth.defaultAccount)
   return {
     initialValues: { 
-      commitment: state.commitment
+      commitment: state.commitment[0],
+      userAddress: state.commitment[1]
     }
   };
 }

@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import CommitmentForm from './../../components/CommitmentForm'
 
 class Commitment extends Component {
-  constructor(props){
-    super(props)
-  }
-
   render() {
-    const commitment = this.props.state.commitment[0];
     return (
       <main className="container">
         <div className="pure-g">

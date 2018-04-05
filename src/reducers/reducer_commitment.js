@@ -5,7 +5,7 @@ export default function(state= [], action){
     case TO_COMMIT_FORM:
       // Return a new state, dont change state!     
       // New ES6 synax [ city, city, city]. Not [city, [city]]
-      return [ action.payload, ...state];
+      return [ action.payload, action.userAddr, ...state];
     default:
       return state;
   }

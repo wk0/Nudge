@@ -8,6 +8,8 @@ import { toCommitForm } from '../actions/index';
 
 import { withRouter } from 'react-router' 
 
+import getWeb3 from "./../util/web3/getWeb3"
+
 const styles = {
   formDiv : {
     display:"flex", 
@@ -34,10 +36,24 @@ class LandingCommitmentForm extends Component {
 
     this.state = { 
       term: 'run a marathon', 
+      userAddr: ''
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    getWeb3.then((web3) => {
+      if(web3){
+        //console.log(web3.payload.web3Instance)
+        web3.payload.web3Instance.eth.getAccounts((err, res) => {
+          if(!err){
+            this.setState({userAddr: res[0]})
+          }
+        });
+      }
+    })
   }
 
   onInputChange(event) {
@@ -47,7 +63,7 @@ class LandingCommitmentForm extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     //push to the real form
-    this.props.toCommitForm(this.state.term);
+    this.props.toCommitForm(this.state.term, this.state.userAddr);
     this.props.router.push('/commitment')
   }
   
