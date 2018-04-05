@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import CommitmentForm from './../../components/CommitmentForm'
 
 class Commitment extends Component {
   constructor(props){
@@ -8,15 +9,13 @@ class Commitment extends Component {
 
   render() {
     const commitment = this.props.state.commitment[0];
-    console.log(commitment)
     return (
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1 header">
             <h1>Commitment</h1>
             <br/>
-            <h3>{commitment}</h3>
-
+            <CommitmentForm commitment={commitment}/>
           </div>
         </div>
       </main>
