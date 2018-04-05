@@ -73,23 +73,23 @@ const options = {
 }
 
 ReactDOM.render((
-    <DrizzleProvider options={options}>
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <LoadingContainer>
-            <Router history={history}>
-              <Route path="/" component={App}>
-                <IndexRoute component={Landing} />
-                <Route path="drizzle" component={DrizzleHomeContainer}/>
-                <Route path="commitment" component={Commitment}/>
-                <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
-                <Route path="profile" component={UserIsAuthenticated(Profile)} />
-              </Route>
-            </Router>
-          </LoadingContainer>
-        </Provider>
-      </MuiThemeProvider>
-    </DrizzleProvider>
+      <DrizzleProvider options={options}>
+        <MuiThemeProvider theme={theme}>
+          <Provider store={store}>
+            <LoadingContainer>
+              <Router history={history}>
+                <Route path="/" component={App}>
+                  <IndexRoute component={Landing} />
+                  <Route path="drizzle" component={DrizzleHomeContainer}/>
+                  <Route path="commitment" component={Commitment}/>
+                  <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
+                  <Route path="profile" component={UserIsAuthenticated(Profile)} />
+                </Route>
+              </Router>
+            </LoadingContainer>
+          </Provider>
+        </MuiThemeProvider>
+      </DrizzleProvider>
   ),
   document.getElementById('root')
 );

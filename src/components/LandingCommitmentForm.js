@@ -73,7 +73,7 @@ class LandingCommitmentForm extends Component {
         <div style={styles.formDiv}>
           <div style={styles.wantTo}> I want to</div>
           <input value={this.state.term} onChange={this.onInputChange}/>
-          <Button type="submit" color="inherit" style={styles.goButton}>Go!</Button>
+          <Button variant="raised" type="submit" color="primary" style={styles.goButton}>Go</Button>
         </div>
       </form>
     );
