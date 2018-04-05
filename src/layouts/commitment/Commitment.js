@@ -13,9 +13,9 @@ class Commitment extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1 header">
-            <h1>Commitment</h1>
+            <h1>New Commitment</h1>
             <br/>
-            <CommitmentForm commitment={commitment}/>
+            <CommitmentForm/>
           </div>
         </div>
       </main>
