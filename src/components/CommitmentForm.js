@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Button from "material-ui/Button";
+import TextField from 'material-ui/TextField';
 import { Field, reduxForm } from "redux-form";
 
 import { connect } from "react-redux";
@@ -27,16 +28,24 @@ class CommitmentForm extends Component {
       commitment: this.props.commitment,
       userAddr: "",
     };
-
   }
 
-  // TODO : Edit to be material ui complient
   renderField(field) {
     // also pulls off touched and error from meta,
     // so can now use meta instead of field.meta.touched
     const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
 
+    return (
+      <TextField 
+        error={touched && error ? true : false}
+        label={field.label}
+        {...field.input} 
+        helperText={touched ? error : ""}
+      />
+    );
+  }
+
+  /*
     return (
       <div className={className}>
         <label>{field.label}</label>
@@ -44,9 +53,7 @@ class CommitmentForm extends Component {
         <div className="text-help">{touched ? error : ""}</div>
       </div>
     );
-  }
 
-  /*
   renderDatePicker(field) {
     const {input, placeholder, defaultValue, meta: {touched, error} } = field;
     
@@ -79,7 +86,7 @@ class CommitmentForm extends Component {
             <Field name="userAddress" component={this.renderField} type="text" />
           </div>
           <div>
-            <label htmlFor="deadline">By</label>
+            <label htmlFor="deadline">By (DD/MM/YY)</label>
             <Field name="deadline" component={this.renderField} type="date" />
           </div>
 
@@ -104,6 +111,10 @@ function validate(values) {
 
   if (!values.userAddress) {
     errors.userAddress = "Enter your Ethereum Address!"
+  }
+
+  if (!values.deadline ) {
+    errors.deadline = "Enter a deadline"
   }
 
   //if (!_web3.utils.isAddress(values.userAddress)){
