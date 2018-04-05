@@ -13,10 +13,24 @@ import { connect } from "react-redux";
 //import moment from 'moment'
 
 const styles = {
+  formContainer : {
+    padding: '12px',
+    //backgroundColor: "#ffffe5"
+  },
   goButton : {
     fontFamily:'Oswald', 
     fontWeight:'bold', 
     backgroundColor:'secondary'
+  },
+  labels : {
+    paddingRight:"8px"
+  }, 
+  pair : {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  textField: {
+    width: '60%'
   }
 }
 
@@ -40,6 +54,7 @@ class CommitmentForm extends Component {
         error={touched && error ? true : false}
         label={field.label}
         {...field.input} 
+        style={styles.textField}
         helperText={touched ? error : ""}
       />
     );
@@ -76,24 +91,37 @@ class CommitmentForm extends Component {
 
     return (
       //<MuiPickersUtilsProvider utils={MomentUtils}>
+      <div style={styles.formContainer}>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
-          <div>
-            <label htmlFor="commitment">Commitment</label>
+          <div style={styles.pair}>
+            <label style={styles.labels} htmlFor="commitment">Commitment</label>
             <Field name="commitment" component={this.renderField} type="text" />
           </div>
-          <div>
-            <label htmlFor="userAddress">My Address</label>
-            <Field name="userAddress" component={this.renderField} type="text" />
-          </div>
-          <div>
-            <label htmlFor="deadline">By (DD/MM/YY)</label>
+
+          <div style={styles.pair}>
+            <label style={styles.labels} htmlFor="deadline">By (DD/MM/YY)</label>
             <Field name="deadline" component={this.renderField} type="date" />
           </div>
 
+          <div style={styles.pair}>
+            <label style={styles.labels} htmlFor="userAddress">My Address</label>
+            <Field name="userAddress" component={this.renderField} type="text" />
+          </div>
+
+          <div style={styles.pair}>
+            <label style={styles.labels} htmlFor="modAddress">Moderator Address</label>
+            <Field name="modAddress" component={this.renderField} type="text" />
+          </div>
+
+          <div style={styles.pair}>
+            <label style={styles.labels} htmlFor="altAddress">Alternative Payout Address</label>
+            <Field name="altAddress" component={this.renderField} type="text" />
+          </div>          
 
           <br />
           <Button variant="raised" color="primary" type="submit" style={styles.goButton}>Submit</Button>
         </form>
+      </div>
       //</MuiPickersUtilsProvider>
     );
   }
@@ -109,12 +137,20 @@ function validate(values) {
     errors.commitment = "Enter a commitment!";
   }
 
+  if (!values.deadline ) {
+    errors.deadline = "Enter a deadline"
+  }
+
   if (!values.userAddress) {
     errors.userAddress = "Enter your Ethereum Address!"
   }
 
-  if (!values.deadline ) {
-    errors.deadline = "Enter a deadline"
+  if (!values.modAddress) {
+    errors.modAddress = "Enter a moderator Ethereum Address!"
+  }
+
+  if (!values.altAddress) {
+    errors.altAddress = "Enter an alternative payout Ethereum Address!"
   }
 
   //if (!_web3.utils.isAddress(values.userAddress)){
