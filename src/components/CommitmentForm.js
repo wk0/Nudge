@@ -10,6 +10,8 @@ import { bindActionCreators } from 'redux';
 import { newCommitment } from '../actions/index';
 import { withRouter } from 'react-router' 
 
+import Checkbox from 'material-ui/Checkbox';
+
 //For date picker
 //import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 //import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
@@ -66,6 +68,22 @@ class CommitmentForm extends Component {
     );
   }
 
+  renderCheckbox(field) {
+    // also pulls off touched and error from meta,
+    // so can now use meta instead of field.meta.touched
+    const { meta: { touched, error } } = field;
+
+    return (
+      <Checkbox
+        checked={true} 
+        error={touched && error ? true : false}
+        label={field.label}
+        {...field.input} 
+        helperText={touched ? error : ""}
+      />
+    );
+  }
+
   /*
     return (
       <div className={className}>
@@ -96,6 +114,7 @@ class CommitmentForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log(this.props)
 
     return (
       //<MuiPickersUtilsProvider utils={MomentUtils}>
@@ -174,6 +193,15 @@ function validate(values) {
 }
 function mapStateToProps(state) {
   // This initialized the form values
+  console.log(state)
+  
+  //commitment = state.commitment[0];
+  //deadline = '06/01/18'
+  //userAddress = state.commitment[1];
+
+  //but in the case of a cancel, the its all in commitment[0]
+  // then commitment[0].altAddress, etc
+
   return {
     initialValues: {
       commitment: state.commitment[0],
