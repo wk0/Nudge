@@ -5,6 +5,10 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Button from "material-ui/Button";
 
+import { bindActionCreators } from 'redux';
+import { confirmedCommitment } from './../../actions/index'
+import { withRouter } from 'react-router' 
+
 const styles = {
   button : {
     fontFamily:'Oswald', 
@@ -37,8 +41,12 @@ class Receipt extends Component {
     );
   }
 
-  onConfirm(){
+  onConfirm(contractTerms){
     console.log("confirmed")
+    //console.log(contractTerms)
+
+    this.props.confirmedCommitment(contractTerms)
+    this.props.router.push('/mycommitments')
   }
 
   onCancel(){
@@ -49,7 +57,6 @@ class Receipt extends Component {
 
   render() {
     const contractTerms = this.props.state.commitment[0]
-    console.log(contractTerms)
 
     var body;
     if (contractTerms === undefined ){
@@ -73,8 +80,8 @@ class Receipt extends Component {
           </List>
           <br/>
           <div>
-            <Button variant="raised" color="primary" style={styles.button} onClick={this.onConfirm}>Confirm</Button>
-            <Button variant="raised" color="secondary" style={styles.button} onClick={this.onCancel}>Cancel</Button>
+            <Button variant="raised" color="primary" style={styles.button} onClick={()=>{this.onConfirm(contractTerms)}}>Confirm</Button>
+            <Button variant="raised" color="secondary" style={styles.button} onClick={()=>{this.onCancel()}}>Cancel</Button>
           </div>
         </div>
       );
@@ -101,4 +108,8 @@ const mapStateToProps = state => {
   return {state}
 }
 
-export default connect(mapStateToProps, {})(Receipt);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ confirmedCommitment }, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Receipt));

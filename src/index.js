@@ -20,6 +20,7 @@ import Profile from './user/layouts/profile/Profile'
 import Landing from './layouts/landing/Landing'
 import Commitment from './layouts/commitment/Commitment';
 import Receipt from './layouts/commitment/Receipt';
+import MyCommitments from './layouts/commitment/MyCommitments'
 
 // Contracts
 import ComplexStorage from './../build/contracts/ComplexStorage.json'
@@ -83,6 +84,7 @@ ReactDOM.render((
                   <IndexRoute component={Landing} />
                   <Route path="drizzle" component={DrizzleHomeContainer}/>
                   <Route path="commitment" component={Commitment}/>
+                  <Route path="mycommitments" component={MyCommitments}/>
                   <Route path="receipt" component={Receipt}/>
                   <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
                   <Route path="profile" component={UserIsAuthenticated(Profile)} />

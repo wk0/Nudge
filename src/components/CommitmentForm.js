@@ -114,7 +114,7 @@ class CommitmentForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    console.log(this.props)
+    //console.log(this.props)
 
     return (
       //<MuiPickersUtilsProvider utils={MomentUtils}>
@@ -193,8 +193,8 @@ function validate(values) {
 }
 function mapStateToProps(state) {
   // This initialized the form values
-  console.log(state)
-  
+  //console.log(state)
+
   //commitment = state.commitment[0];
   //deadline = '06/01/18'
   //userAddress = state.commitment[1];

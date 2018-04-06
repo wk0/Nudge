@@ -1,6 +1,8 @@
 
 export const TO_COMMIT_FORM = 'FETCH_WEATHER';
 export const NEW_COMMITMENT = 'NEW_COMMITMENT';
+export const CONFIRMED_COMMITMENT = 'CONFIRMED_COMMITMENT';
+
 
 export function toCommitForm(landingCommitment, userAddr) {
   return {
@@ -17,6 +19,12 @@ export function newCommitment(commitment) {
   }
 }
 
+export function confirmedCommitment(confirmedCommitment) {
+  return {
+    type: CONFIRMED_COMMITMENT,
+    payload: confirmedCommitment
+  }
+}
 
 
 
