@@ -5,6 +5,10 @@ import TextField from 'material-ui/TextField';
 import { Field, reduxForm } from "redux-form";
 
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+
+import { newCommitment } from '../actions/index';
+import { withRouter } from 'react-router' 
 
 //For date picker
 //import MomentUtils from 'material-ui-pickers/utils/moment-utils';
@@ -42,6 +46,8 @@ class CommitmentForm extends Component {
       commitment: this.props.commitment,
       userAddr: "",
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   renderField(field) {
@@ -83,7 +89,9 @@ class CommitmentForm extends Component {
 
   handleSubmit(values) {
     // print the form values to the console
-    console.log(values);
+    //console.log(values);
+    this.props.newCommitment(values);
+    this.props.router.push('/receipt')
   }
 
   render() {
@@ -99,8 +107,8 @@ class CommitmentForm extends Component {
           </div>
 
           <div style={styles.pair}>
-            <label style={styles.labels} htmlFor="deadline">By (DD/MM/YY)</label>
-            <Field name="deadline" component={this.renderField} type="date" />
+            <label style={styles.labels} htmlFor="deadline">By (MM/DD/YY)</label>
+            <Field name="deadline" component={this.renderField} type="text" />
           </div>
 
           <div style={styles.pair}>
@@ -169,9 +177,15 @@ function mapStateToProps(state) {
   return {
     initialValues: {
       commitment: state.commitment[0],
+      deadline: '06/01/18',
       userAddress: state.commitment[1]
     }
   };
+}
+
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ newCommitment }, dispatch);
 }
 
 CommitmentForm = reduxForm({
@@ -180,4 +194,4 @@ CommitmentForm = reduxForm({
   form: "mainCommitment"
 })(CommitmentForm);
 
-export default connect(mapStateToProps, {})(CommitmentForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommitmentForm));
