@@ -29,6 +29,13 @@ contract NudgeFactory {
   function setOwner(address _newOwner) onlyOwner external {
     owner = _newOwner;
   }
+
+  function NudgeFactory() public {
+    owner = msg.sender;
+  }
+
+
+
   // -----
 
 
