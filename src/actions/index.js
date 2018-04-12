@@ -307,10 +307,10 @@ export function requestCommitment() {
 }
 
 // Thunk action creator
-export function confirmedCommitment(confirmedCommitment) {
+export function confirmedCommitment(contractParams) {
   // Thunk middleware passes the dispatch method as an argument to 
   // the function, thus making it able to dispatch actions itself
-  console.log("Create contract with terms here, terms:", confirmedCommitment);
+  console.log("Create contract with terms here, terms:", contractParams);
 
   return function(dispatch){
     // First dispatch, app state updated that call is starting 
@@ -326,19 +326,34 @@ export function confirmedCommitment(confirmedCommitment) {
           })
           .then(function(accounts) {
             let _web3 = web3.payload.web3Instance;
-
-            console.log("chained promise, accounts", accounts)
-            console.log("web3", _web3)
             let NudgeFactoryContract = new _web3.eth.Contract(nudgeFactoryABI, "0xf12b5dd4ead5f743c6baa640b0216200e89b60da");
-            console.log(NudgeFactoryContract)
             return NudgeFactoryContract;
           })
           .then(function(nudgeFactory) {
+            let _web3 = web3.payload.web3Instance;
+            console.log(nudgeFactory)
+            console.log(contractParams)
+            nudgeFactory.methods.newStandardNudge(
+              contractParams.userAddress,
+              contractParams.modAddress,
+              contractParams.altAddress,
+              contractParams.commitment,
+              contractParams.deadline
+            )
+            .send({from: "0xf17f52151EbEF6C7334FAD080c5704D77216b732", gas: 6500000, value: _web3.utils.toWei("5")})
+            .then(function(receipt) {
+              console.log(receipt)
+            })
+              
+
+
+            /*
             nudgeFactory.methods.live().call((err, result) => {
               if (result != null){
                 console.log("is factory live?", result);
               }
             })
+            */
           })
 
         }
