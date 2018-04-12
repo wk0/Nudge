@@ -1,16 +1,21 @@
-import { TO_COMMIT_FORM, NEW_COMMITMENT, CONFIRMED_COMMITMENT } from '../actions/index';
+import { TO_COMMIT_FORM, NEW_COMMITMENT, REQUEST_COMMITMENT, RECEIVE_COMMITMENT } from '../actions/index';
 
-export default function(state= [], action){
+export default function(state= {isFetching: false, commitment:[]}, action){
   switch (action.type){
     case NEW_COMMITMENT:
       return [action.payload, ...state]
     case TO_COMMIT_FORM:
-      // Return a new state, dont change state!     
-      // New ES6 synax [ city, city, city]. Not [city, [city]]
       return [ action.payload, action.userAddr, ...state];
-    case CONFIRMED_COMMITMENT:
-      console.log(action.payload)
-      return action.payload;
+    case REQUEST_COMMITMENT:
+      return Object.assign({}, state, {
+        isFetching: true,
+      })
+    case RECEIVE_COMMITMENT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        commitment: action.payload,
+        lastUpdated: action.receivedAt
+      })
     default:
       return state;
   }
