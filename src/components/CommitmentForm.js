@@ -126,7 +126,7 @@ class CommitmentForm extends Component {
           </div>
 
           <div style={styles.pair}>
-            <label style={styles.labels} htmlFor="deadline">By (MM/DD/YY)</label>
+            <label style={styles.labels} htmlFor="deadline">Minutes until Due</label>
             <Field name="deadline" component={this.renderField} type="text" />
           </div>
 
@@ -205,8 +205,10 @@ function mapStateToProps(state) {
   return {
     initialValues: {
       commitment: state.commitment[0],
-      deadline: '06/01/18',
-      userAddress: state.commitment[1]
+      deadline: '60',
+      userAddress: state.commitment[1],
+      modAddress: '0x5AEDA56215b167893e80B4fE645BA6d5Bab767DE',
+      altAddress: '0x6330A553Fc93768F612722BB8c2eC78aC90B3bbc'
     }
   };
 }
